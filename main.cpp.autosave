@@ -13,22 +13,14 @@ int main()
     int min;
     char c;
 
-    std::cin>>codvoo>>aero;
-    std::cin>>hora>>c>>min;
-    std::cin>>dest>>hora_dest>>c>>min_dest;
-
-    //scanf("%s %s %d:%d %s %d:%d", &codvoo, aero, &hora, &min, dest, &hora_dest, &min_dest);
-
-    std::cout<<dest<<hora_dest<<min_dest<<"\n";
+    std::cin>>codvoo>>aero>>hora>>c>>min>>dest>>hora_dest>>c>>min_dest;
 
     voo *obj1 = new voo(codvoo, aero, hora, min, dest, hora_dest, min_dest);
 
-    std::cout<<obj1->custo<<" "<<obj1->horaformatada<<" "<<obj1->horaformatada_dest;
-
-    std::cout<<std::endl;
-    std::cout<<obj1->aeroporto<<obj1->codvoo<<obj1->horaformatada<<std::endl;
-    std::cout<<obj1->dest<<obj1->horaformatada_dest;
-
+    graph *grafo = new graph(1000);
+    
+    
+    
 
 
     graph *obj = new graph(5);

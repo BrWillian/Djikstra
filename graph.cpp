@@ -48,7 +48,6 @@ int graph::dijkstra(int orig, int dest)
                 }
             }
         }
-
     }
     // retorna a distancia minima ate o destino
     return dist[dest];
