@@ -2,13 +2,15 @@
 #include <graph.h>
 #include <voo.h>
 #include <fstream>
+#include <string.h>
 #include <map>
+#include <sstream>
 
 using namespace std;
 
 int main()
 {
-    string line;
+    string line = "";
     string strtmp = "";
 
     voo *novo_voo;
@@ -17,13 +19,15 @@ int main()
     ifstream file("file.txt");
     if(file.is_open())
     {
-        while(!(file.eof()))
+        while(getline(file, line))
         {
-            getline(file, line, ' ');
-            cout<<line<<endl;
+            stringstream ss (line);
 
+            while (getline (ss, strtmp, ' '))
+            {
+                palavras.push_back (strtmp);
+            }
 
-            //cout<<palavras[0]<<" "<<palavras[1]<<" "<<palavras[2]<<" "<<palavras[3]<<endl;
             if(palavras.size() > 5)
             {
                 novo_voo = new voo(palavras[0], palavras[1], palavras[2], palavras[3], palavras[4]);
@@ -31,23 +35,20 @@ int main()
                 novo_voo = new voo(palavras[0], palavras[3], palavras[5], palavras[6], palavras[7]);
                 objetos.push_back(*novo_voo);
             }else {
-                cout<<palavras[0]<<" "<<palavras[1]<<" "<<palavras[2]<<" "<<palavras[3]<<" "<<palavras[4]<<endl;
-                /* novo_voo = new voo(palavras[0], palavras[1], palavras[2], palavras[3], palavras[4]);
-                objetos.push_back(*novo_voo); */
+                novo_voo = new voo(palavras[0], palavras[1], palavras[2], palavras[3], palavras[4]);
+                objetos.push_back(*novo_voo);
             }
-            cout<<palavras[0]<<" "<<palavras[1]<<" "<<palavras[2]<<" "<<palavras[3]<<" "<<palavras[4]<<endl;
-
             palavras.clear();
         }
-
+        file.close();
     }
 
-    file.close();
-
-    for(auto it=objetos.begin(); it<objetos.end(); it++)
+    /*for(auto &i: objetos)
     {
-        cout<<it->ori<<endl;
-    }
+        cout<<i.codvoo<<" "<<i.ori<<" "<<i.dest<<endl;
+    }*/
+
+    cout<<objetos[2].partida;
 
 
     graph *obj = new graph(5);
@@ -61,6 +62,6 @@ int main()
     obj->addVertex(2, 4, 1);
     obj->addVertex(3, 4, 1);
 
-    std::cout<<obj->dijkstra(0, 4);
+    //std::cout<<obj->dijkstra(0, 4);
 
 }
