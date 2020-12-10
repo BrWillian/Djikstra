@@ -43,13 +43,10 @@ int main()
         file.close();
     }
 
-    /*for(auto &i: objetos)
+    for(auto &i: objetos)
     {
         cout<<i.codvoo<<" "<<i.ori<<" "<<i.dest<<endl;
-    }*/
-
-    cout<<objetos[2].partida;
-
+    }
 
     graph *obj = new graph(5);
     obj->addVertex(0, 1, 4);

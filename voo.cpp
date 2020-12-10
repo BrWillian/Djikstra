@@ -16,11 +16,9 @@ voo::voo(std::string codigo_viagem, std::string ori, std::string partida, std::s
 int voo::formatar_hora(string hora){
     stringstream ss;
     unsigned int hh, mm;
-
     ss << hora;
     ss >> hh;
     ss.ignore();
     ss >> mm;
-
     return (hh*3600+mm*60);
 }
