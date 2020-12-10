@@ -1,34 +1,53 @@
 #include <iostream>
 #include <graph.h>
 #include <voo.h>
+#include <fstream>
+#include <map>
+
+using namespace std;
 
 int main()
 {
-    std::string aero;
-    std::string codvoo;
-    std::string dest;
-    int hora_dest;
-    int min_dest;
-    int hora;
-    int min;
-    char c;
+    string line;
+    string strtmp = "";
 
-    std::cin>>codvoo>>aero;
-    std::cin>>hora>>c>>min;
-    std::cin>>dest>>hora_dest>>c>>min_dest;
+    voo *novo_voo;
+    vector<voo> objetos;
+    vector<string> palavras;
+    ifstream file("file.txt");
+    if(file.is_open())
+    {
+        while(!(file.eof()))
+        {
+            getline(file, line, ' ');
+            cout<<line<<endl;
 
-    //scanf("%s %s %d:%d %s %d:%d", &codvoo, aero, &hora, &min, dest, &hora_dest, &min_dest);
 
-    std::cout<<dest<<hora_dest<<min_dest<<"\n";
+            //cout<<palavras[0]<<" "<<palavras[1]<<" "<<palavras[2]<<" "<<palavras[3]<<endl;
+            if(palavras.size() > 5)
+            {
+                novo_voo = new voo(palavras[0], palavras[1], palavras[2], palavras[3], palavras[4]);
+                objetos.push_back(*novo_voo);
+                novo_voo = new voo(palavras[0], palavras[3], palavras[5], palavras[6], palavras[7]);
+                objetos.push_back(*novo_voo);
+            }else {
+                cout<<palavras[0]<<" "<<palavras[1]<<" "<<palavras[2]<<" "<<palavras[3]<<" "<<palavras[4]<<endl;
+                /* novo_voo = new voo(palavras[0], palavras[1], palavras[2], palavras[3], palavras[4]);
+                objetos.push_back(*novo_voo); */
+            }
+            cout<<palavras[0]<<" "<<palavras[1]<<" "<<palavras[2]<<" "<<palavras[3]<<" "<<palavras[4]<<endl;
 
-    voo *obj1 = new voo(codvoo, aero, hora, min, dest, hora_dest, min_dest);
+            palavras.clear();
+        }
 
-    std::cout<<obj1->custo<<" "<<obj1->horaformatada<<" "<<obj1->horaformatada_dest;
+    }
 
-    std::cout<<std::endl;
-    std::cout<<obj1->aeroporto<<obj1->codvoo<<obj1->horaformatada<<std::endl;
-    std::cout<<obj1->dest<<obj1->horaformatada_dest;
+    file.close();
 
+    for(auto it=objetos.begin(); it<objetos.end(); it++)
+    {
+        cout<<it->ori<<endl;
+    }
 
 
     graph *obj = new graph(5);
@@ -42,7 +61,6 @@ int main()
     obj->addVertex(2, 4, 1);
     obj->addVertex(3, 4, 1);
 
-    //std::cout<<obj->dijkstra(0, 4)<<std::endl;
-
+    std::cout<<obj->dijkstra(0, 4);
 
 }

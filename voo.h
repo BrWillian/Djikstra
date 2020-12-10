@@ -5,13 +5,10 @@
 class voo
 {
 public:
-    voo(std::string aero, std::string, int hh, int mm, std::string dest, int hh_dest, int mm_dest);
-    int horaformatada;
-    int custo;
+    voo(std::string codigo_viagem, std::string ori, std::string partida, std::string dest, std::string chegada);
     std::string codvoo;
-    std::string aeroporto;
+    std::string ori;
     std::string dest;
-    int horaformatada_dest;
 };
 
 #endif // VOO_H

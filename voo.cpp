@@ -1,12 +1,9 @@
 #include "voo.h"
 #include <math.h>
 
-voo::voo(std::string aeroporto, std::string codvoo, int hh, int mm, std::string dest, int hh_dest, int mm_dest)
+voo::voo(std::string codigo_viagem, std::string ori, std::string partida, std::string dest, std::string chegada)
 {
-    this->aeroporto = aeroporto;
-    this->codvoo = codvoo;
-    this->horaformatada = (hh*3600) + (mm*60);
+    this->codvoo = codigo_viagem;
+    this->ori = ori;
     this->dest = dest;
-    this->horaformatada_dest = (hh_dest*3600) + (mm_dest*60);
-    this->custo = std::abs(this->horaformatada - this->horaformatada_dest);
 }
