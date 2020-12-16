@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string.h>
 #include <map>
+#include <set>
 #include <sstream>
 
 using namespace std;
@@ -12,6 +13,8 @@ int main()
 {
     string line = "";
     string strtmp = "";
+
+    set<pair<string, pair<string, int>>>voos;
 
     voo *novo_voo;
     vector<voo> objetos;
@@ -45,8 +48,45 @@ int main()
 
     for(auto &i: objetos)
     {
-        cout<<i.codvoo<<" "<<i.ori<<" "<<i.dest<<endl;
+        voos.insert(make_pair(i.codvoo, make_pair(i.ori, i.partida)));
+        voos.insert(make_pair(i.codvoo, make_pair(i.dest, i.chegada)));
     }
+
+    set<pair<string, pair<string, int>>> :: iterator it;
+    set<pair<string, pair<string, int>>> :: iterator it2;
+    graph *obj = new graph(100);ele diss
+    int i = 0;
+    for(it=voos.begin(); it != voos.end();it++)
+    {
+        cout<<it->first<<" "<<it->second.first<<" "<<it->second.second<<" "<<endl;
+    }
+
+
+
+    cout<<"____________________________"<<endl;
+
+    for(auto &i: objetos)
+    {
+        cout<<i.codvoo<<" "<<i.ori<<" "<<i.partida<<" "<<i.dest<<" "<<i.chegada<<endl;
+    }
+
+
+    cout<<"____________________________"<<endl;
+    /*
+    set<pair<string, string>> :: iterator iv;
+    vector<voo>::iterator io;
+    for(iv=voos.begin(); iv != voos.end();iv++)
+    {
+        for(io=objetos.begin(); io!=objetos.end(); io++)
+        {
+            if(iv->first == io->codvoo)
+            {
+                cout<<io->codvoo<<" "<<io->ori<<" "<<io->dest<<endl;
+
+            }
+        }
+    }
+
 
     graph *obj = new graph(5);
     obj->addVertex(0, 1, 4);
@@ -57,7 +97,7 @@ int main()
     obj->addVertex(2, 1, 1);
     obj->addVertex(2, 3, 2);
     obj->addVertex(2, 4, 1);
-    obj->addVertex(3, 4, 1);
+    obj->addVertex(3, 4, 1);*/
 
     //std::cout<<obj->dijkstra(0, 4);
 

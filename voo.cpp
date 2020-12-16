@@ -22,3 +22,7 @@ int voo::formatar_hora(string hora){
     ss >> mm;
     return (hh*3600+mm*60);
 }
+int voo::getCusto()
+{
+    return std::abs(chegada - partida);
+}
